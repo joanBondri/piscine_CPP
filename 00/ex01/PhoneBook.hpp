@@ -11,6 +11,7 @@ class PhoneBook {
 		void search(void);
 		void exit(void);
 		void go_to_phone_book(void);
+		void add_lst(std::string name, std::string lname, std::string nname, std::string secret, std::string number);
 };
 
 #endif
