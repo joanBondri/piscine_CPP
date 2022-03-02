@@ -43,7 +43,7 @@ void	Contact::set_darkest_secret(std::string new_one)
 }
 void		Contact::print_me(void)
 {
-	std::cout << "name\t\t: " << get_first_name() << std::endl;
+	std::cout << "name\t: " << get_first_name() << std::endl;
 	std::cout << "last name\t\t: " << get_last_name() << std::endl;
 	std::cout << "nickname\t\t: " << get_nick_name() << std::endl;
 	std::cout << "darkest secret\t\t: " << get_darkest_secret() << std::endl;

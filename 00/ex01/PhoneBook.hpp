@@ -5,6 +5,7 @@
 
 class PhoneBook {
 	private :
+		static int many;
 		Contact contact[8];
 	public :
 		void add_func(void);
