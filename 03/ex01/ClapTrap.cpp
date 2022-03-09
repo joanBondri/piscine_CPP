@@ -24,16 +24,16 @@ void			ClapTrap::setAttack(const unsigned int& at)	{ _attack = at; }
 
 void	ClapTrap::printMe(void)
 {
-	std::cout << "\033[31;1;4m" << _name << "\033[0m" << " appeared in a nonchalant way" << std::endl;
+	std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" << " appeared in a nonchalant way" << std::endl;
 }
 void	ClapTrap::attack(const std::string& target)
 {
 	if (_energy == 0)
 	{
-		std::cout << "\033[31;1;4m" << _name << "\033[0m" << " tried to do something, but he is too lame to do it" << std::endl;
+		std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" << " tried to do something, but he is too lame to do it" << std::endl;
 		return ;
 	}
-	std::cout << "\033[31;1;4m" << _name << "\033[0m" <<" attacks " << target << ", causing " << _attack <<" points of damage!" << std::endl;
+	std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" <<" attacks " << target << ", causing " << _attack <<" points of damage!" << std::endl;
 	_energy--;
 
 }
@@ -41,14 +41,14 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hit == 0)
 	{
-		std::cout << "someone is attacking the corpse of "<< "\033[31;1;4m" << _name << "\033[0m" <<" ... this person is weird" << std::endl;
+		std::cout << "Claptrap : someone is attacking the corpse of "<< "\033[31;1;4m" << _name << "\033[0m" <<" ... this person is weird" << std::endl;
 		return ;
 	}
-	std::cout << "\033[31;1;4m" << _name << "\033[0m" <<" take " << amount << " damage." << std::endl;
+	std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" <<" take " << amount << " damage." << std::endl;
 	if (amount > _hit)
 	{
 		_hit = 0;
-		std::cout << "\033[31;1;4m" << _name << "\033[0m" << " die !!" << std::endl;
+		std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" << " die !!" << std::endl;
 		return ;
 	}
 	_hit -= amount;
@@ -57,14 +57,14 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_energy == 0)
 	{
-		std::cout << "\033[31;1;4m" << _name << "\033[0m" << " tried to do something, but he is too lame to do it" << std::endl;
+		std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" << " tried to do something, but he is too lame to do it" << std::endl;
 		return ;
 	}
-	std::cout << "\033[31;1;4m" << _name << "\033[0m" <<" healed hisself by "<< amount << " points" << std::endl;
+	std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" <<" healed hisself by "<< amount << " points" << std::endl;
 	_energy--;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "\033[31;1;4m" << _name << "\033[0m" << " desepeared mysteriously ..." << std::endl;
+	std::cout << "Claptrap : \033[31;1;4m" << _name << "\033[0m" << " desepeared mysteriously ..." << std::endl;
 }
