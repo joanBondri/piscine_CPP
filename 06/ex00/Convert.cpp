@@ -2,7 +2,51 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <cmath>
 #include <iostream>
+
+static	int	lint(long nbr)
+{
+	int		len;
+
+	len = 0;
+	if (nbr == 0)
+		return (1);
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		len++;
+	}
+	while (nbr > 0)
+	{
+		len++;
+		nbr /= 10;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n, char *str)
+{
+	int		len_n;
+	long	nbr;
+
+	nbr = (long)n;
+	len_n = lint(nbr);
+	str[len_n--] = '\0';
+	if (nbr == 0)
+		str[0] = '0';
+	if (nbr < 0)
+	{
+		str[0] = '-';
+		nbr *= -1;
+	}
+	while (nbr > 0)
+	{
+		str[len_n--] = nbr % 10 + '0';
+		nbr /= 10;
+	}
+	return (str);
+}
 
 std::runtime_error	Convert::Impossible("Impossible");
 std::runtime_error	Convert::NonDisplayable("not displayable");
@@ -17,15 +61,18 @@ Convert& Convert::operator=(Convert& co)
 }
 char	Convert::toChar(void)
 {
-	int	c;
+	int		c;
+	char	s[30];
 
 	try 
 	{
-		if (_input.size() != 3 || _input.c_str()[0] != '\'' || _input.c_str()[0] != '\'' )
-			c = toInt();
-		else
+		if (_input.size() == 3 && _input.c_str()[0] == '\'' && _input.c_str()[2] == '\'' )
+		{
 			c = (int)_input.c_str()[1];
-		//_input = itoa(c);
+			_input = ft_itoa(c, (char*)&s);
+		}
+		else
+			c = toInt();
 		if (c < -128 || c > 127)
 			throw Convert::Impossible;
 	} catch (std::exception& e) {
@@ -92,7 +139,13 @@ void	Convert::display( std::ostream& of )
 	of << std::endl << "float : ";
 	try 
 	{
-		of << toFloat();
+		float f = toFloat();
+		of << f;
+		if (f == std::ceil(f) && f < 1000000)
+			of << ".0f";
+		else
+			of << "f";
+
 	} catch (std::exception& e)
 	{
 		of << e.what();
@@ -100,7 +153,10 @@ void	Convert::display( std::ostream& of )
 	of << std::endl << "double : ";
 	try 
 	{
-		of << toDouble();
+		double	d = toDouble();
+		of << d;
+		if (d == std::ceil(d) && d < 1000000)
+			of << ".0";
 	} catch (std::exception& e)
 	{
 		of << e.what();
